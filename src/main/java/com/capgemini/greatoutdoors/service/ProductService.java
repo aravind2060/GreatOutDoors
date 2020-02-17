@@ -1,7 +1,6 @@
 package com.capgemini.greatoutdoors.service;
 
 
-import java.util.List;
 import java.util.Map;
 
 import com.capgemini.greatoutdoors.dto.ProductDTO;
@@ -13,8 +12,11 @@ public interface ProductService {
 	boolean addProduct(ProductDTO product)throws ProductException;
 	boolean editProduct(ProductDTO prodcut)throws ProductException;
 	boolean deleteProduct(String productId)throws ProductException;
-	List<ProductDTO> filterProducts();
-	List<ProductDTO> filterByName();
-	List<ProductDTO> filterByPrice();
-	List<ProductDTO> filterByBrand();
+	Map<String,ProductDTO> filterProducts(int input,Map<String,ProductDTO> list)throws ProductException;
+	Map<String,ProductDTO> filterByName(Map<String,ProductDTO> list)throws ProductException;
+	Map<String,ProductDTO> filterByPrice(Map<String,ProductDTO> list)throws ProductException;
+	Map<String,ProductDTO> filterByBrand(Map<String,ProductDTO> list)throws ProductException;
+	Map<String,ProductDTO> searchAProduct(String input)throws ProductException;
+   
+	
 }

@@ -10,7 +10,7 @@ public class ProductException extends Exception {
 	
 	
 
-	void printLog()
+	public void printLog()
 	{
 		System.out.println(log);
 	}

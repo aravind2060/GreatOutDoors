@@ -12,7 +12,10 @@ import com.capgemini.greatoutdoors.dto.ProductDTO;
 public class ProductsRepository {
 
 	static Map<String,ProductDTO> ProductRepo=new HashMap<String,ProductDTO>(); 
-	
+	 public ProductsRepository()
+	{
+		
+	}
 	public static void  setProductsRepository()
 	{
 	 ArrayList<String> productIds=new ArrayList<>();
@@ -32,6 +35,7 @@ public class ProductsRepository {
 	 for(int i=0;i<6;i++)
 		 ProductRepo.put(productIds.get(i),new ProductDTO(productIds.get(i),productPrices.get(i),productColours.get(i),productDimensions.get(i),productSpecifications.get(i),
 				 productManufacturers.get(i),productQuantites.get(i),productCategories.get(i),productNames.get(i),productBrands.get(i)));
+	  
 	}
 	
 	public static Map<String,ProductDTO> getProductRepository()

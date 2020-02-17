@@ -11,9 +11,9 @@ import com.capgemini.greatoutdoors.util.ProductsRepository;
 public class ProductDaoImpl implements ProductDao
 {
     Map<String, ProductDTO> productsList;
-    
     public ProductDaoImpl()
     {
+       ProductsRepository.setProductsRepository();
        this.productsList=ProductsRepository.getProductRepository();
     }
     
@@ -24,7 +24,12 @@ public class ProductDaoImpl implements ProductDao
 		{
 			throw new ProductException("No  Products Exist");
 		}
-			else {
+		else 
+		{
+			/*
+			 * if it is real project we will limit no.of returning results
+			 * 
+			 */
 			return productsList;
 		}
 	}
@@ -46,9 +51,15 @@ public class ProductDaoImpl implements ProductDao
 	
 	public boolean editProduct(ProductDTO product) throws ProductException 
 	{
-		productsList.put(product.getProductId(), product);
-		editInDb(product);
-		return true;
+		if(productsList.containsValue(product))
+		{
+			productsList.put(product.getProductId(), product);
+			return true;
+		}	 
+		else
+		{
+		 throw new ProductException("There is no such product to edit!!");
+		}
 	}
 
 	public boolean deleteProduct(String productId) throws ProductException 
@@ -92,14 +103,14 @@ public class ProductDaoImpl implements ProductDao
 
 	@Override
 	public List<ProductDTO> filterByName() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 
 	@Override
 	public List<ProductDTO> filterByPrice() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

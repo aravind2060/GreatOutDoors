@@ -3,7 +3,7 @@ package com.capgemini.greatoutdoors.dto;
 public class ProductDTO {
 
 	private String productId;
-	private double price;
+	private Double price;
 	private String colour;
 	private String dimension;
 	private String specification;
@@ -38,7 +38,7 @@ public class ProductDTO {
 		this.productId = productId;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
@@ -107,6 +107,14 @@ public class ProductDTO {
 
 	public void setProductBrand(String productBrand) {
 		ProductBrand = productBrand;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductDTO [productId=" + productId + ", price=" + price + ", colour=" + colour + ", dimension="
+				+ dimension + ", specification=" + specification + ", manufacturer=" + manufacturer + ", quantity="
+				+ quantity + ", productCategory=" + productCategory + ", productName=" + productName + ", ProductBrand="
+				+ ProductBrand + "]";
 	}
 	
 	
