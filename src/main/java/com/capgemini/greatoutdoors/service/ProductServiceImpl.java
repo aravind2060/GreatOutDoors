@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Map<String, ProductDTO> searchAProduct(String input) throws ProductException {
-	 if(input.isEmpty())
+	 if(input.isEmpty() || input==null)
 		 throw new ProductException("Input cannot be empty!");
 	 else
 	   return productDao.searchAProduct(input);

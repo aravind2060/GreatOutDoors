@@ -154,10 +154,10 @@ public class UserInterface
 	{
 		
 		try {
-			System.out.println("Available Product:");
+			System.out.println("Available Products:");
 			object.viewAllProducts().entrySet().stream().map(p->p.getValue()).map(p->p.getProductName()).forEach(System.out::println);
 			System.out.println("\nEnter Product Name to Filter:");
-			Map<String,ProductDTO> map=object.filterByBrand(scan.nextLine());
+			Map<String,ProductDTO> map=object.filterByName(scan.nextLine());
 			map.entrySet().stream().map(p->p.getValue()).forEach(System.out::println);
 		} catch (ProductException e) {
 		
