@@ -1,7 +1,7 @@
 package com.capgemini.greatoutdoors.dao;
 
 
-import java.util.List;
+
 import java.util.Map;
 
 import com.capgemini.greatoutdoors.dto.ProductDTO;
@@ -13,9 +13,9 @@ public interface ProductDao {
 	boolean addProduct(ProductDTO product)throws ProductException;
 	boolean editProduct(ProductDTO product)throws ProductException;
 	boolean deleteProduct(String productId)throws ProductException;
-	List<ProductDTO> filterProducts();
-	List<ProductDTO> filterByName();
-	List<ProductDTO> filterByPrice();
-	List<ProductDTO> filterByBrand();
+	Map<String,ProductDTO> filterByName(String input)throws ProductException;
+	Map<String,ProductDTO> filterByPrice()throws ProductException;
+	Map<String,ProductDTO> filterByBrand(String input)throws ProductException;
+	Map<String, ProductDTO> searchAProduct(String input) throws ProductException;
 	
 }

@@ -11,7 +11,7 @@ public class ProductDTO {
 	private int quantity;
 	private int productCategory;
 	private String productName;
-	private String ProductBrand;
+	private String productBrand;
 	
 	
 
@@ -27,7 +27,7 @@ public class ProductDTO {
 		this.quantity = quantity;
 		this.productCategory = productCategory;
 		this.productName = productName;
-		this.ProductBrand=productBrand;
+		this.productBrand=productBrand;
 	}
 
 	public String getProductId() {
@@ -102,11 +102,11 @@ public class ProductDTO {
 		this.productName = productName;
 	}
 	public String getProductBrand() {
-		return ProductBrand;
+		return productBrand;
 	}
 
 	public void setProductBrand(String productBrand) {
-		ProductBrand = productBrand;
+		this.productBrand = productBrand;
 	}
 
 	@Override
@@ -114,8 +114,83 @@ public class ProductDTO {
 		return "ProductDTO [productId=" + productId + ", price=" + price + ", colour=" + colour + ", dimension="
 				+ dimension + ", specification=" + specification + ", manufacturer=" + manufacturer + ", quantity="
 				+ quantity + ", productCategory=" + productCategory + ", productName=" + productName + ", ProductBrand="
-				+ ProductBrand + "]";
+				+ productBrand + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((colour == null) ? 0 : colour.hashCode());
+		result = prime * result + ((dimension == null) ? 0 : dimension.hashCode());
+		result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + ((productBrand == null) ? 0 : productBrand.hashCode());
+		result = prime * result + productCategory;
+		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		result = prime * result + quantity;
+		result = prime * result + ((specification == null) ? 0 : specification.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductDTO other = (ProductDTO) obj;
+		if (colour == null) {
+			if (other.colour != null)
+				return false;
+		} else if (!colour.equals(other.colour))
+			return false;
+		if (dimension == null) {
+			if (other.dimension != null)
+				return false;
+		} else if (!dimension.equals(other.dimension))
+			return false;
+		if (manufacturer == null) {
+			if (other.manufacturer != null)
+				return false;
+		} else if (!manufacturer.equals(other.manufacturer))
+			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
+		if (productBrand == null) {
+			if (other.productBrand != null)
+				return false;
+		} else if (!productBrand.equals(other.productBrand))
+			return false;
+		if (productCategory != other.productCategory)
+			return false;
+		if (productId == null) {
+			if (other.productId != null)
+				return false;
+		} else if (!productId.equals(other.productId))
+			return false;
+		if (productName == null) {
+			if (other.productName != null)
+				return false;
+		} else if (!productName.equals(other.productName))
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		if (specification == null) {
+			if (other.specification != null)
+				return false;
+		} else if (!specification.equals(other.specification))
+			return false;
+		return true;
+	}
+
+	
 	
 	
 }

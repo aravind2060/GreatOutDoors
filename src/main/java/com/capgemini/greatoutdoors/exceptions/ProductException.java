@@ -1,5 +1,6 @@
 package com.capgemini.greatoutdoors.exceptions;
 
+@SuppressWarnings("serial")
 public class ProductException extends Exception {
 	
 	String log;
@@ -12,7 +13,7 @@ public class ProductException extends Exception {
 
 	public void printLog()
 	{
-		System.out.println(log);
+		System.err.println(log);
 	}
 
 }

@@ -12,10 +12,9 @@ public interface ProductService {
 	boolean addProduct(ProductDTO product)throws ProductException;
 	boolean editProduct(ProductDTO prodcut)throws ProductException;
 	boolean deleteProduct(String productId)throws ProductException;
-	Map<String,ProductDTO> filterProducts(int input,Map<String,ProductDTO> list)throws ProductException;
-	Map<String,ProductDTO> filterByName(Map<String,ProductDTO> list)throws ProductException;
-	Map<String,ProductDTO> filterByPrice(Map<String,ProductDTO> list)throws ProductException;
-	Map<String,ProductDTO> filterByBrand(Map<String,ProductDTO> list)throws ProductException;
+	Map<String,ProductDTO> filterByName(String input)throws ProductException;
+	Map<String,ProductDTO> filterByPrice()throws ProductException;
+	Map<String,ProductDTO> filterByBrand(String input)throws ProductException;
 	Map<String,ProductDTO> searchAProduct(String input)throws ProductException;
    
 	

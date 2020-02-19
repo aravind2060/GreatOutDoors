@@ -5,7 +5,7 @@ package com.capgemini.greatoutdoors.util;
 public class GenerateRandomString { 
 
 	
-	static String getAlphaNumericString() 
+	public static String getAlphaNumericString() 
 	{ 
 
 	
