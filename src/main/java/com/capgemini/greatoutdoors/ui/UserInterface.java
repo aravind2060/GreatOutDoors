@@ -211,6 +211,7 @@ public class UserInterface
 
 	private static void filterByProductBrand() {
 		try {
+			
 			System.out.println("Available Product Brands:");
 			object.viewAllProducts().entrySet().stream().map(p->p.getValue()).map(p->p.getProductBrand()).forEach(System.out::println);
 			System.out.println("Enter Brand Name to Filter:");
