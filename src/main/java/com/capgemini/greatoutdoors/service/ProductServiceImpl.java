@@ -4,7 +4,7 @@ package com.capgemini.greatoutdoors.service;
 
 import java.util.Map;
 
-
+import com.capgemini.greatoutdoors.dao.ProductDao;
 import com.capgemini.greatoutdoors.dao.ProductDaoImpl;
 import com.capgemini.greatoutdoors.dto.ProductDTO;
 import com.capgemini.greatoutdoors.dto.UserDTO;
@@ -15,7 +15,7 @@ import com.capgemini.greatoutdoors.util.CurrentUserInfo;
 
 public class ProductServiceImpl implements ProductService{
 
-	ProductDaoImpl productDao;
+	ProductDao productDao;
 	
 	public ProductServiceImpl()
 	{
@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Map<String, ProductDTO> searchAProduct(String input) throws ProductException {
-	 if(input.isEmpty() || input==null)
+	 if(input.isEmpty())
 		 throw new ProductException("Input cannot be empty!");
 	 else
 	   return productDao.searchAProduct(input);

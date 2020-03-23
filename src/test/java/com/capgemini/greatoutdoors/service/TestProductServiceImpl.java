@@ -24,16 +24,13 @@ import com.capgemini.greatoutdoors.util.ProductsRepository;
 public class TestProductServiceImpl {
 
 	
-	ProductServiceImpl object;
-	@BeforeEach
-	public void init()
-	{
-		object=new ProductServiceImpl();
-	}
+	ProductServiceImpl object=new ProductServiceImpl();
+	
 	@DisplayName("Testing Adding functionality of product into Repository")
 	@Test
 	public void testAddaProduct()
 	{
+		
 	   assertAll("Testing insertion ",
 			   ()->assertEquals("test1 insertion",true,object.addProduct(new ProductDTO("id3",120.12,"Pink","Dimen1","Spec1","manu1",120,2,"Product1","Puma"))),
 			   ()->assertEquals("test2 insertion",true,object.addProduct(new ProductDTO("id4",120.12,"Pink","Dimen1","Spec1","manu1",120,2,"Product1","Puma"))),

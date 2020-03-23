@@ -9,6 +9,7 @@ import com.capgemini.greatoutdoors.dto.ProductDTO;
 import com.capgemini.greatoutdoors.dto.UserDTO;
 import com.capgemini.greatoutdoors.exceptions.LoginException;
 import com.capgemini.greatoutdoors.exceptions.ProductException;
+import com.capgemini.greatoutdoors.service.ProductService;
 import com.capgemini.greatoutdoors.service.ProductServiceImpl;
 import com.capgemini.greatoutdoors.util.GenerateRandomString;
 
@@ -17,15 +18,85 @@ public class UserInterface
 
 	static Scanner scan=new Scanner(System.in);
 	
-	static ProductServiceImpl object=new ProductServiceImpl();
+	static ProductService object=new ProductServiceImpl();
 	
 	public static void main(String[] args) 
 	{
 
     	 isLoggedIn();
     }
-    
-   
+    /*
+     * Control starts form here
+     * checks whether anyone logged in or not?
+     * if no one logged in it forces to logIn 
+     * using @promptLogIn
+     * 
+     */
+	private static void isLoggedIn()
+	{
+	   if(object.checkUserLoggedIn())
+	   {
+		   if(object.checkWhoLoggedIn())
+		   {
+			   AdminController();
+		   }
+		   else
+		   {
+			 ProductMasterController();  
+		   }
+	   }
+	   else
+	   {
+		   System.out.println("Please Log In!!");
+		   promptLogIn();
+	   }
+	}
+	/*
+	 * If Admin Logins AdminController will execute
+	 */
+	private static void AdminController() 
+	{
+	 System.out.println("\nWelcome Admin You can able to Perform Following operations");	
+	  while(true)
+	  {
+	   System.out.println("\n\n1)Add a Product Master \t 2)View All Products \t 3)Search A Product \n 4)Filter a Product By Name \t 5)Filter Product By Price \n 6)Filter Product By Brand \t 7)LogOut \t Anyother key to exit");	  
+	   System.out.print("\nEnter Choice:");
+	   int input=scan.nextInt();
+	   scan.nextLine();
+	   switch(input)
+	   {
+	   case 1:
+		    addProductMaster();
+		   break;
+	   case 2:
+		    viewAllProducts();
+		   break;
+	   case 3:
+		   searchAProduct();
+		   break;
+	   case 4:
+		    filterByProductName();
+		   break;
+	   case 5:
+		   filterByProductPrice();
+		   break;
+	   case 6:
+		   filterByProductBrand();
+		   break;	
+	   case 7:
+		   LogOutCurrentUser();
+		   break;
+	default:
+		System.out.println("Thank you for having us!!");
+		closeApplication();
+	   }
+	  }
+		
+	}
+	/*
+	 * If ProductMaster Logins ProductMasterController executes
+	 * 
+	 */
 	private static void ProductMasterController()
 	{
 		 System.out.println("\nWelcome Product Master You can able to Perform Following operations");
@@ -70,6 +141,9 @@ public class UserInterface
 	      }
 	    }
 	}
+	/*
+	 *  Only admin can add new product master
+	 */
 	private static void addProductMaster() 
 	{
 		UserDTO user=getUserDTO();
@@ -189,6 +263,7 @@ public class UserInterface
 	private static void updateAProduct() 
 	{
 		 viewAllProducts();
+		 System.out.println("Enter Product Id to Edit:");
 	     ProductDTO product=getInputOfProduct();
 	    try 
 	    {
@@ -197,9 +272,7 @@ public class UserInterface
 	    catch (ProductException e) {
 			e.printLog();
 		}
-	  
-	   
-		
+	 
 	}
 
 	public static void addAProduct()
@@ -264,65 +337,6 @@ public class UserInterface
 	  return new ProductDTO(productId,price,color,dimension,specification,manufacturer,quantity,category,productName,productBrand);	
 	}
 	
-	private static void isLoggedIn()
-	{
-	   if(object.checkUserLoggedIn())
-	   {
-		   if(object.checkWhoLoggedIn())
-		   {
-			   AdminController();
-		   }
-		   else
-		   {
-			 ProductMasterController();  
-		   }
-	   }
-	   else
-	   {
-		   System.out.println("Please Log In!!");
-		   promptLogIn();
-	   }
-	}
-	
-	private static void AdminController() 
-	{
-	 System.out.println("\nWelcome Admin You can able to Perform Following operations");	
-	  while(true)
-	  {
-	   System.out.println("\n\n1)Add a Product Master \t 2)View All Products \t 3)Search A Product \n 4)Filter a Product By Name \t 5)Filter Product By Price \n 6)Filter Product By Brand \t 7)LogOut \t Anyother key to exit");	  
-	   System.out.print("\nEnter Choice:");
-	   int input=scan.nextInt();
-	   scan.nextLine();
-	   switch(input)
-	   {
-	   case 1:
-		    addProductMaster();
-		   break;
-	   case 2:
-		    viewAllProducts();
-		   break;
-	   case 3:
-		   searchAProduct();
-		   break;
-	   case 4:
-		    filterByProductName();
-		   break;
-	   case 5:
-		   filterByProductPrice();
-		   break;
-	   case 6:
-		   filterByProductBrand();
-		   break;	
-	   case 7:
-		   LogOutCurrentUser();
-		   break;
-	default:
-		System.out.println("Thank you for having us!!");
-		closeApplication();
-	   }
-	  }
-		
-	}
 
 
 	private static void LogOutCurrentUser() {
@@ -344,9 +358,9 @@ public class UserInterface
 
 	private static void promptLogIn()
 	{
-	System.out.println("Please Enter UserId:");	
+	System.out.print("\nPlease Enter UserId: ");	
 	  String userid=scan.nextLine();
-	  System.out.println("Please Enter Password"); 
+	  System.out.print("\nPlease Enter Password: "); 
 	  Console c=System.console();
 	  String password;
 	  if(c!=null)

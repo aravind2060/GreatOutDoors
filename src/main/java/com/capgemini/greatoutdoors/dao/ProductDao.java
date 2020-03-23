@@ -5,6 +5,8 @@ package com.capgemini.greatoutdoors.dao;
 import java.util.Map;
 
 import com.capgemini.greatoutdoors.dto.ProductDTO;
+import com.capgemini.greatoutdoors.dto.UserDTO;
+import com.capgemini.greatoutdoors.exceptions.LoginException;
 import com.capgemini.greatoutdoors.exceptions.ProductException;
 
 public interface ProductDao {
@@ -17,5 +19,9 @@ public interface ProductDao {
 	Map<String,ProductDTO> filterByPrice()throws ProductException;
 	Map<String,ProductDTO> filterByBrand(String input)throws ProductException;
 	Map<String, ProductDTO> searchAProduct(String input) throws ProductException;
+	boolean validateAdminLogIn(String username,String password);
+	boolean validateProductMasterLogIn(String username,String password)throws LoginException;
+	void logOutCurrentUser();
+	void createProductMaster(UserDTO user);
 	
 }

@@ -192,7 +192,7 @@ public class ProductDaoImpl implements ProductDao
 		     o.put(p.getProductId(), p);	
 		    }
 		   if(o.isEmpty())
-			   throw new ProductException("No Such Thing to Filter by brand!");
+			   throw new ProductException("No Such Thing to Filter by Name!");
 		   else
 			   return o;
 	}
