@@ -2,8 +2,9 @@ pipeline {
   agent any
   stages {
     stage('clean') {
+      agent any
       steps {
-        sh 'sh \'mvn clean\''
+        sh 'sh mvn clean'
       }
     }
 
